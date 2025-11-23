@@ -7,7 +7,6 @@ namespace SufraSync.Controllers
     [Route("api/[controller]")]
     public class BaseApiController : ControllerBase
     {
-        // CHANGED: Return IActionResult instead of ActionResult<ApiResponse<T>>
         protected IActionResult Success<T>(T data, string message = "")
         {
             return Ok(new ApiResponse<T>

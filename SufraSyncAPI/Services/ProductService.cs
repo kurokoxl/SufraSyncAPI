@@ -16,20 +16,21 @@ namespace SufraSync.Services
             _context = context;
             _mapper = mapper;
         }
-        public async Task<IEnumerable<ProductDTO>> GetAllProductsAsync()
+        public async Task<IEnumerable<ProductDTO>> GetAllProductsAsync(int? categoryId = null)
         {
-            return await _context.Products
-                  .AsNoTracking()
-                  .Select(p => new ProductDTO
-                  {
-                      ProductId = p.ProductId,
-                      Name = p.Name,
-                      CategoryName = p.Category.Name,
-                      Description = p.Description,
-                      Price = p.Price
-                  }).ToListAsync();
-        }
+            var query = _context.Products.AsNoTracking().AsQueryable();
 
+            if (categoryId.HasValue)
+            {
+                query = query.Where(p => p.CategoryId == categoryId.Value);
+            }
+
+            var products = await query
+                .Include(p => p.Category) 
+                .ToListAsync();
+
+            return _mapper.Map<IEnumerable<ProductDTO>>(products);
+        }
         public async Task<ProductDTO?> GetProductAsync(int id)
         {
             var product = await _context.Products
@@ -97,7 +98,7 @@ namespace SufraSync.Services
             return _mapper.Map<ProductDTO>(product);
         }
 
-        public async Task<IEnumerable<ProductDTO>> GetProductsByCategoryAsync(int categoryId)
+        public async Task<IEnumerable<ProductDTO>> GetProductsByCategoryOld(int categoryId)
         {
 
             var products = await _context.Products

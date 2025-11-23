@@ -3,8 +3,8 @@
 public interface IProductService
 {
     // Reads
-    Task<IEnumerable<ProductDTO>> GetAllProductsAsync();
-    Task<IEnumerable<ProductDTO>> GetProductsByCategoryAsync(int categoryId); 
+    Task<IEnumerable<ProductDTO>> GetAllProductsAsync(int? categoryId = null);
+    Task<IEnumerable<ProductDTO>> GetProductsByCategoryOld(int categoryId); 
     Task<ProductDTO?> GetProductAsync(int id);
 
     // Writes (Product)

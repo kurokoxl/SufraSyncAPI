@@ -18,9 +18,9 @@ namespace SufraSync.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetProducts()
+        public async Task<IActionResult> GetProducts([FromQuery] int? categoryId)
         {
-            var products = await _productService.GetAllProductsAsync();
+            var products = await _productService.GetAllProductsAsync(categoryId);
             return Success(products);
         }
 
@@ -118,7 +118,7 @@ namespace SufraSync.Controllers
         [HttpGet("category/{categoryId}")]
         public async Task<IActionResult> GetByCategory(int categoryId)
         {
-            var products = await _productService.GetProductsByCategoryAsync(categoryId);
+            var products = await _productService.GetProductsByCategoryOld(categoryId);
             return Success(products);
         }
 

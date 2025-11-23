@@ -1,4 +1,6 @@
 ﻿using AutoMapper;
+using SufraSyncAPI.Models.DTOs;
+using SufraSyncAPI.Models.DTOs.CategoryDtos;
 using SufraSyncAPI.Models.DTOs.ProductDto;
 using SufraSyncAPI.Models.Entities;
 
@@ -8,6 +10,7 @@ namespace SufraSyncAPI.Mappings
     {
         public MappingProfile()
         {
+            //product
             CreateMap<Product, ProductDTO>()
                 .ForMember(dest => dest.CategoryName, opt => opt.MapFrom(src => src.Category.Name));
 
@@ -17,6 +20,17 @@ namespace SufraSyncAPI.Mappings
             CreateMap<UpdateProductIngredientDto, ProductIngredient>();      
             CreateMap<CreateProductDto, Product>();
             CreateMap<CreateProductIngredientDto, ProductIngredient>();
+
+            //category
+            CreateMap<CategoryDto, Category>();
+            CreateMap<Category, CategoryDto>();
+            CreateMap<CreateCategoryDto, Category>();
+
+            //ingredient
+            CreateMap<Ingredient, IngredientDto>();
+            CreateMap<CreateIngredientDto, Ingredient>();
+            CreateMap<UpdateIngredientDto, Ingredient>();
+
         }
     }
 }
