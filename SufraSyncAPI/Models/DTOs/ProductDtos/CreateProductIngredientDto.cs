@@ -8,6 +8,4 @@ public class CreateProductIngredientDto
     [Range(0.01, 1000, ErrorMessage = "Quantity must be positive")] // Critical check
     public decimal QuantityRequired { get; set; }
 
-    [Required]
-    public string Unit { get; set; }
 }

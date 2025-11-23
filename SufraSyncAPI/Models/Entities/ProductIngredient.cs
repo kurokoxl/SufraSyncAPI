@@ -11,7 +11,5 @@
         // How much of the ingredient is used in the product
         public decimal QuantityRequired { get; set; }
 
-        // Unit for the quantity (grams, pieces, ml). Default to pieces
-        public string Unit { get; set; } = "pcs";
     }
 }

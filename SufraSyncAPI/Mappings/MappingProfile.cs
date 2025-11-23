@@ -15,7 +15,8 @@ namespace SufraSyncAPI.Mappings
                 .ForMember(dest => dest.CategoryName, opt => opt.MapFrom(src => src.Category.Name));
 
             CreateMap<ProductIngredient, ProductIngredientDto>()
-                .ForMember(dest => dest.IngredientName, opt => opt.MapFrom(src => src.Ingredient.Name));
+                .ForMember(dest => dest.IngredientName, opt => opt.MapFrom(src => src.Ingredient.Name))
+                .ForMember(dest => dest.Unit, opt => opt.MapFrom(src => src.Ingredient.Unit));
             CreateMap<UpdateProductDTO, Product>();
             CreateMap<UpdateProductIngredientDto, ProductIngredient>();      
             CreateMap<CreateProductDto, Product>();

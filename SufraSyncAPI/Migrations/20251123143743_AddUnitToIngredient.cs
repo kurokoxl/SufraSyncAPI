@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace SufraSyncAPI.Migrations
 {
     /// <inheritdoc />
-    public partial class firstsetup : Migration
+    public partial class AddUnitToIngredient : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -72,7 +72,8 @@ namespace SufraSyncAPI.Migrations
                     IngredientId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Stock = table.Column<int>(type: "int", nullable: false)
+                    Stock = table.Column<int>(type: "int", nullable: false),
+                    Unit = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -259,8 +260,7 @@ namespace SufraSyncAPI.Migrations
                 {
                     ProductId = table.Column<int>(type: "int", nullable: false),
                     IngredientId = table.Column<int>(type: "int", nullable: false),
-                    QuantityRequired = table.Column<decimal>(type: "decimal(18,3)", precision: 18, scale: 3, nullable: false),
-                    Unit = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false)
+                    QuantityRequired = table.Column<decimal>(type: "decimal(18,3)", precision: 18, scale: 3, nullable: false)
                 },
                 constraints: table =>
                 {
@@ -293,15 +293,15 @@ namespace SufraSyncAPI.Migrations
 
             migrationBuilder.InsertData(
                 table: "Ingredients",
-                columns: new[] { "IngredientId", "Name", "Stock" },
+                columns: new[] { "IngredientId", "Name", "Stock", "Unit" },
                 values: new object[,]
                 {
-                    { 1, "Beef", 500 },
-                    { 2, "Chicken", 600 },
-                    { 3, "Fish", 300 },
-                    { 4, "Tortilla", 1000 },
-                    { 5, "Lettuce", 200 },
-                    { 6, "Tomato", 250 }
+                    { 1, "Beef", 500, "kg" },
+                    { 2, "Chicken", 600, "kg" },
+                    { 3, "Fish", 300, "kg" },
+                    { 4, "Tortilla", 1000, "pcs" },
+                    { 5, "Lettuce", 200, "kg" },
+                    { 6, "Tomato", 250, "kg" }
                 });
 
             migrationBuilder.InsertData(
@@ -316,21 +316,21 @@ namespace SufraSyncAPI.Migrations
 
             migrationBuilder.InsertData(
                 table: "ProductIngredients",
-                columns: new[] { "IngredientId", "ProductId", "QuantityRequired", "Unit" },
+                columns: new[] { "IngredientId", "ProductId", "QuantityRequired" },
                 values: new object[,]
                 {
-                    { 1, 1, 0.1m, "kg" },
-                    { 4, 1, 2m, "pcs" },
-                    { 5, 1, 0.05m, "kg" },
-                    { 6, 1, 0.03m, "kg" },
-                    { 2, 2, 0.09m, "kg" },
-                    { 4, 2, 2m, "pcs" },
-                    { 5, 2, 0.05m, "kg" },
-                    { 6, 2, 0.03m, "kg" },
-                    { 3, 3, 0.12m, "kg" },
-                    { 4, 3, 2m, "pcs" },
-                    { 5, 3, 0.05m, "kg" },
-                    { 6, 3, 0.03m, "kg" }
+                    { 1, 1, 0.1m },
+                    { 4, 1, 2m },
+                    { 5, 1, 0.05m },
+                    { 6, 1, 0.03m },
+                    { 2, 2, 0.09m },
+                    { 4, 2, 2m },
+                    { 5, 2, 0.05m },
+                    { 6, 2, 0.03m },
+                    { 3, 3, 0.12m },
+                    { 4, 3, 2m },
+                    { 5, 3, 0.05m },
+                    { 6, 3, 0.03m }
                 });
 
             migrationBuilder.CreateIndex(

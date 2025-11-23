@@ -10,5 +10,9 @@ namespace SufraSyncAPI.Models.DTOs
 
         [Range(0, 100000)]
         public int Stock { get; set; }
+
+        [Required]
+        [StringLength(50)]
+        public string Unit { get; set; }
     }
 }

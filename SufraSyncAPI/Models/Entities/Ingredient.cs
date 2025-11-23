@@ -8,6 +8,8 @@
 
         public int Stock { get; set; }
 
+        public string Unit { get; set; }
+
         public List<ProductIngredient> ProductIngredients { get; set; }
     }
 }

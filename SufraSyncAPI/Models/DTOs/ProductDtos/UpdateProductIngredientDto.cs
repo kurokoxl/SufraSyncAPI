@@ -6,7 +6,5 @@ namespace SufraSyncAPI.Models.DTOs.ProductDto
     {
         [Required]
         public decimal? QuantityRequired { get; set; }
-        [Required]
-        public string Unit { get; set; }
     }
 }

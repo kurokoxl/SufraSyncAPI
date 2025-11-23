@@ -25,10 +25,6 @@ namespace SufraSync.Data.Configurations
             builder.Property(pi => pi.QuantityRequired)
                 .HasPrecision(18, 3);
 
-            // Configure Unit column
-            builder.Property(pi => pi.Unit)
-                .HasMaxLength(20)
-                .IsRequired();
         }
     }
 }

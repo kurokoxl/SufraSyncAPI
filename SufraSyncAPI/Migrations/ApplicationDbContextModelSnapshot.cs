@@ -279,6 +279,10 @@ namespace SufraSyncAPI.Migrations
                     b.Property<int>("Stock")
                         .HasColumnType("int");
 
+                    b.Property<string>("Unit")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.HasKey("IngredientId");
 
                     b.ToTable("Ingredients");
@@ -288,37 +292,43 @@ namespace SufraSyncAPI.Migrations
                         {
                             IngredientId = 1,
                             Name = "Beef",
-                            Stock = 500
+                            Stock = 500,
+                            Unit = "kg"
                         },
                         new
                         {
                             IngredientId = 2,
                             Name = "Chicken",
-                            Stock = 600
+                            Stock = 600,
+                            Unit = "kg"
                         },
                         new
                         {
                             IngredientId = 3,
                             Name = "Fish",
-                            Stock = 300
+                            Stock = 300,
+                            Unit = "kg"
                         },
                         new
                         {
                             IngredientId = 4,
                             Name = "Tortilla",
-                            Stock = 1000
+                            Stock = 1000,
+                            Unit = "pcs"
                         },
                         new
                         {
                             IngredientId = 5,
                             Name = "Lettuce",
-                            Stock = 200
+                            Stock = 200,
+                            Unit = "kg"
                         },
                         new
                         {
                             IngredientId = 6,
                             Name = "Tomato",
-                            Stock = 250
+                            Stock = 250,
+                            Unit = "kg"
                         });
                 });
 
@@ -435,11 +445,6 @@ namespace SufraSyncAPI.Migrations
                         .HasPrecision(18, 3)
                         .HasColumnType("decimal(18,3)");
 
-                    b.Property<string>("Unit")
-                        .IsRequired()
-                        .HasMaxLength(20)
-                        .HasColumnType("nvarchar(20)");
-
                     b.HasKey("ProductId", "IngredientId");
 
                     b.HasIndex("IngredientId");
@@ -451,85 +456,73 @@ namespace SufraSyncAPI.Migrations
                         {
                             ProductId = 1,
                             IngredientId = 1,
-                            QuantityRequired = 0.1m,
-                            Unit = "kg"
+                            QuantityRequired = 0.1m
                         },
                         new
                         {
                             ProductId = 1,
                             IngredientId = 4,
-                            QuantityRequired = 2m,
-                            Unit = "pcs"
+                            QuantityRequired = 2m
                         },
                         new
                         {
                             ProductId = 1,
                             IngredientId = 5,
-                            QuantityRequired = 0.05m,
-                            Unit = "kg"
+                            QuantityRequired = 0.05m
                         },
                         new
                         {
                             ProductId = 1,
                             IngredientId = 6,
-                            QuantityRequired = 0.03m,
-                            Unit = "kg"
+                            QuantityRequired = 0.03m
                         },
                         new
                         {
                             ProductId = 2,
                             IngredientId = 2,
-                            QuantityRequired = 0.09m,
-                            Unit = "kg"
+                            QuantityRequired = 0.09m
                         },
                         new
                         {
                             ProductId = 2,
                             IngredientId = 4,
-                            QuantityRequired = 2m,
-                            Unit = "pcs"
+                            QuantityRequired = 2m
                         },
                         new
                         {
                             ProductId = 2,
                             IngredientId = 5,
-                            QuantityRequired = 0.05m,
-                            Unit = "kg"
+                            QuantityRequired = 0.05m
                         },
                         new
                         {
                             ProductId = 2,
                             IngredientId = 6,
-                            QuantityRequired = 0.03m,
-                            Unit = "kg"
+                            QuantityRequired = 0.03m
                         },
                         new
                         {
                             ProductId = 3,
                             IngredientId = 3,
-                            QuantityRequired = 0.12m,
-                            Unit = "kg"
+                            QuantityRequired = 0.12m
                         },
                         new
                         {
                             ProductId = 3,
                             IngredientId = 4,
-                            QuantityRequired = 2m,
-                            Unit = "pcs"
+                            QuantityRequired = 2m
                         },
                         new
                         {
                             ProductId = 3,
                             IngredientId = 5,
-                            QuantityRequired = 0.05m,
-                            Unit = "kg"
+                            QuantityRequired = 0.05m
                         },
                         new
                         {
                             ProductId = 3,
                             IngredientId = 6,
-                            QuantityRequired = 0.03m,
-                            Unit = "kg"
+                            QuantityRequired = 0.03m
                         });
                 });
 

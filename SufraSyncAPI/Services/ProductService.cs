@@ -139,6 +139,7 @@ namespace SufraSync.Services
                 throw new ArgumentException($"Ingredient with ID {createDto.IngredientId} does not exist.");
 
             var pIngredient = _mapper.Map<ProductIngredient>(createDto);
+            pIngredient.Ingredient = ingredient;
 
             product.ProductIngredients.Add(pIngredient);
 

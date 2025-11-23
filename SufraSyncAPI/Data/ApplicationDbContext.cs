@@ -38,15 +38,15 @@ namespace SufraSync.Data
               new Category { CategoryId = 5, Name = "Beverage" }
           );
 
-            modelBuilder.Entity<Ingredient>().HasData(
-              //add mexican restaurant ingredients here
-              new Ingredient { IngredientId = 1, Name = "Beef", Stock = 500 },
-              new Ingredient { IngredientId = 2, Name = "Chicken", Stock = 600 },
-              new Ingredient { IngredientId = 3, Name = "Fish", Stock = 300 },
-              new Ingredient { IngredientId = 4, Name = "Tortilla", Stock = 1000 },
-              new Ingredient { IngredientId = 5, Name = "Lettuce", Stock = 200 },
-              new Ingredient { IngredientId = 6, Name = "Tomato", Stock = 250 }
-          );
+                        modelBuilder.Entity<Ingredient>().HasData(
+                            //add mexican restaurant ingredients here
+                            new Ingredient { IngredientId = 1, Name = "Beef", Stock = 500, Unit = "kg" },
+                            new Ingredient { IngredientId = 2, Name = "Chicken", Stock = 600, Unit = "kg" },
+                            new Ingredient { IngredientId = 3, Name = "Fish", Stock = 300, Unit = "kg" },
+                            new Ingredient { IngredientId = 4, Name = "Tortilla", Stock = 1000, Unit = "pcs" },
+                            new Ingredient { IngredientId = 5, Name = "Lettuce", Stock = 200, Unit = "kg" },
+                            new Ingredient { IngredientId = 6, Name = "Tomato", Stock = 250, Unit = "kg" }
+                    );
 
             modelBuilder.Entity<Product>().HasData(
 
@@ -78,18 +78,18 @@ namespace SufraSync.Data
                 );
 
             modelBuilder.Entity<ProductIngredient>().HasData(
-                new ProductIngredient { ProductId = 1, IngredientId = 1, QuantityRequired = 0.1m, Unit = "kg" },
-                new ProductIngredient { ProductId = 1, IngredientId = 4, QuantityRequired = 2m, Unit = "pcs" },
-                new ProductIngredient { ProductId = 1, IngredientId = 5, QuantityRequired = 0.05m, Unit = "kg" },
-                new ProductIngredient { ProductId = 1, IngredientId = 6, QuantityRequired = 0.03m, Unit = "kg" },
-                new ProductIngredient { ProductId = 2, IngredientId = 2, QuantityRequired = 0.09m, Unit = "kg" },
-                new ProductIngredient { ProductId = 2, IngredientId = 4, QuantityRequired = 2m, Unit = "pcs" },
-                new ProductIngredient { ProductId = 2, IngredientId = 5, QuantityRequired = 0.05m, Unit = "kg" },
-                new ProductIngredient { ProductId = 2, IngredientId = 6, QuantityRequired = 0.03m, Unit = "kg" },
-                new ProductIngredient { ProductId = 3, IngredientId = 3, QuantityRequired = 0.12m, Unit = "kg" },
-                new ProductIngredient { ProductId = 3, IngredientId = 4, QuantityRequired = 2m, Unit = "pcs" },
-                new ProductIngredient { ProductId = 3, IngredientId = 5, QuantityRequired = 0.05m, Unit = "kg" },
-                new ProductIngredient { ProductId = 3, IngredientId = 6, QuantityRequired = 0.03m, Unit = "kg" }
+                new ProductIngredient { ProductId = 1, IngredientId = 1, QuantityRequired = 0.1m },
+                new ProductIngredient { ProductId = 1, IngredientId = 4, QuantityRequired = 2m },
+                new ProductIngredient { ProductId = 1, IngredientId = 5, QuantityRequired = 0.05m },
+                new ProductIngredient { ProductId = 1, IngredientId = 6, QuantityRequired = 0.03m },
+                new ProductIngredient { ProductId = 2, IngredientId = 2, QuantityRequired = 0.09m },
+                new ProductIngredient { ProductId = 2, IngredientId = 4, QuantityRequired = 2m },
+                new ProductIngredient { ProductId = 2, IngredientId = 5, QuantityRequired = 0.05m },
+                new ProductIngredient { ProductId = 2, IngredientId = 6, QuantityRequired = 0.03m },
+                new ProductIngredient { ProductId = 3, IngredientId = 3, QuantityRequired = 0.12m },
+                new ProductIngredient { ProductId = 3, IngredientId = 4, QuantityRequired = 2m },
+                new ProductIngredient { ProductId = 3, IngredientId = 5, QuantityRequired = 0.05m },
+                new ProductIngredient { ProductId = 3, IngredientId = 6, QuantityRequired = 0.03m }
                 );
         }
     }
