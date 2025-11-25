@@ -9,7 +9,7 @@ namespace SufraSyncAPI.Models.DTOs
         public string Name { get; set; }
 
         [Range(0, 100000)]
-        public int Stock { get; set; }
+        public decimal Stock { get; set; }
 
         [Required]
         [StringLength(50)]

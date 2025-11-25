@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using SufraSyncAPI.Models.Entities;
 using System.Reflection;
@@ -30,6 +31,22 @@ namespace SufraSync.Data
 
         public void LoadData(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<IdentityRole>().HasData(
+        new IdentityRole
+        {
+            Id = "c7b013f0-5201-4317-abd8-c211f91b7330",
+            Name = "Admin",
+            NormalizedName = "ADMIN",
+            ConcurrencyStamp = "1"
+        },
+        new IdentityRole
+        {
+            Id = "bd5865a2-27c2-4a38-a203-392833302a59",
+            Name = "User",
+            NormalizedName = "USER",
+            ConcurrencyStamp = "2"
+        }
+    );
             modelBuilder.Entity<Category>().HasData(
               new Category { CategoryId = 1, Name = "Appetizer" },
               new Category { CategoryId = 2, Name = "Entree" },

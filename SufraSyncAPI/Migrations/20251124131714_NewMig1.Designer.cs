@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SufraSync.Data;
 
@@ -11,9 +12,11 @@ using SufraSync.Data;
 namespace SufraSyncAPI.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20251124131714_NewMig1")]
+    partial class NewMig1
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -292,8 +295,8 @@ namespace SufraSyncAPI.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<decimal>("Stock")
-                        .HasColumnType("decimal(18,2)");
+                    b.Property<int>("Stock")
+                        .HasColumnType("int");
 
                     b.Property<string>("Unit")
                         .IsRequired()
@@ -308,42 +311,42 @@ namespace SufraSyncAPI.Migrations
                         {
                             IngredientId = 1,
                             Name = "Beef",
-                            Stock = 500m,
+                            Stock = 500,
                             Unit = "kg"
                         },
                         new
                         {
                             IngredientId = 2,
                             Name = "Chicken",
-                            Stock = 600m,
+                            Stock = 600,
                             Unit = "kg"
                         },
                         new
                         {
                             IngredientId = 3,
                             Name = "Fish",
-                            Stock = 300m,
+                            Stock = 300,
                             Unit = "kg"
                         },
                         new
                         {
                             IngredientId = 4,
                             Name = "Tortilla",
-                            Stock = 1000m,
+                            Stock = 1000,
                             Unit = "pcs"
                         },
                         new
                         {
                             IngredientId = 5,
                             Name = "Lettuce",
-                            Stock = 200m,
+                            Stock = 200,
                             Unit = "kg"
                         },
                         new
                         {
                             IngredientId = 6,
                             Name = "Tomato",
-                            Stock = 250m,
+                            Stock = 250,
                             Unit = "kg"
                         });
                 });
@@ -358,9 +361,6 @@ namespace SufraSyncAPI.Migrations
 
                     b.Property<DateTime>("OrderDate")
                         .HasColumnType("datetime2");
-
-                    b.Property<int>("OrderStatus")
-                        .HasColumnType("int");
 
                     b.Property<decimal>("TotalAmount")
                         .HasPrecision(18, 2)

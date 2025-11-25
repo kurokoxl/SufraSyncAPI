@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using SufraSyncAPI.Models.DTOs;
 using SufraSyncAPI.Models.DTOs.CategoryDtos;
+using SufraSyncAPI.Models.DTOs.OrderDtos;
 using SufraSyncAPI.Models.DTOs.ProductDto;
 using SufraSyncAPI.Models.Entities;
 
@@ -32,6 +33,8 @@ namespace SufraSyncAPI.Mappings
             CreateMap<CreateIngredientDto, Ingredient>();
             CreateMap<UpdateIngredientDto, Ingredient>();
 
+            //Order
+            CreateMap<Order, OrderDto>();
         }
     }
 }

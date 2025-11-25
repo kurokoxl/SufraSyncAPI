@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using SufraSync.Controllers;
 using SufraSyncAPI.Models.DTOs;
 using SufraSyncAPI.Services.Interfaces;
@@ -31,7 +32,7 @@ namespace SufraSyncAPI.Controllers
 
             return Success(ingredient);
         }
-
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         public async Task<IActionResult> AddIngredient(CreateIngredientDto createDto)
         {
@@ -42,7 +43,7 @@ namespace SufraSyncAPI.Controllers
 
             return CreatedSuccess(nameof(GetIngredient), new { id = created.IngredientId }, created, "Ingredient added successfully");
         }
-
+        [Authorize(Roles = "Admin")]
         [HttpPut("{id}")]
         public async Task<IActionResult> UpdateIngredient(int id, UpdateIngredientDto updateDto)
         {
@@ -53,7 +54,7 @@ namespace SufraSyncAPI.Controllers
 
             return Success(updated, "Ingredient updated successfully");
         }
-
+        [Authorize(Roles = "Admin")]
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteIngredient(int id)
         {

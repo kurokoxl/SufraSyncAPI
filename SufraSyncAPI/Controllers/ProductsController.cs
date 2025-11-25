@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using SufraSyncAPI.Models.DTOs.ProductDto;
 using SufraSyncAPI.Models.Entities;
 using SufraSyncAPI.Models.Responses;
@@ -34,7 +35,7 @@ namespace SufraSync.Controllers
             }
             return Success(product);
         }
-
+        [Authorize(Roles = "Admin")]
         [HttpPut("{id}")]
         public async Task<IActionResult> UpdateProduct(int id, UpdateProductDTO request)
         {
@@ -46,7 +47,7 @@ namespace SufraSync.Controllers
 
             return Success(product);
         }
-
+        [Authorize(Roles = "Admin")]
         [HttpPost("{productId}/ingredients")]
         public async Task<IActionResult> AddIngredient(int productId, [FromBody] CreateProductIngredientDto createDto)
         {
@@ -69,7 +70,7 @@ namespace SufraSync.Controllers
                 return BadRequestError<object>(ex.Message);
             }
         }
-
+        [Authorize(Roles = "Admin")]
         [HttpPut("{productId}/ingredients/{ingredientId}")]
         public async Task<IActionResult> UpdateIngredient(int productId, int ingredientId, [FromBody] UpdateProductIngredientDto request)
         {
@@ -82,7 +83,7 @@ namespace SufraSync.Controllers
 
             return Success(updatedIngredient, "Ingredient quantity updated successfully");
         }
-
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         public async Task<IActionResult> AddProduct(CreateProductDto createDto)
         {
@@ -94,7 +95,7 @@ namespace SufraSync.Controllers
 
             return CreatedSuccess(nameof(GetProduct), new { id = createdProduct.ProductId }, createdProduct, "Product Added Successfully");
         }
-
+        [Authorize(Roles = "Admin")]
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteProduct(int id)
         {
