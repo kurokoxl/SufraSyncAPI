@@ -19,7 +19,7 @@ namespace SufraSyncAPI.Mappings
                 .ForMember(dest => dest.IngredientName, opt => opt.MapFrom(src => src.Ingredient.Name))
                 .ForMember(dest => dest.Unit, opt => opt.MapFrom(src => src.Ingredient.Unit));
             CreateMap<UpdateProductDTO, Product>();
-            CreateMap<UpdateProductIngredientDto, ProductIngredient>();      
+            CreateMap<UpdateProductIngredientDto, ProductIngredient>();
             CreateMap<CreateProductDto, Product>();
             CreateMap<CreateProductIngredientDto, ProductIngredient>();
 
@@ -34,7 +34,11 @@ namespace SufraSyncAPI.Mappings
             CreateMap<UpdateIngredientDto, Ingredient>();
 
             //Order
+            CreateMap<OrderDto, Order>();
+
             CreateMap<Order, OrderDto>();
+            CreateMap<OrderProduct, OrderProductDto>()
+                .ForMember(dest => dest.ProductName, opt => opt.MapFrom(src => src.Product.Name));
         }
     }
 }
