@@ -150,23 +150,19 @@ namespace SufraSync.Services
 
         public async Task<bool> RemoveIngredientFromProductAsync(int productId, int ingredientId)
         {
-            // STEP 1: Validate the Parent (Is the Product ID real?)
-            // We use AnyAsync because it's faster than loading the object
+      
             var productExists = await _context.Products.AnyAsync(p => p.ProductId == productId);
 
             if (!productExists)
             {
-                // Specific Error: The Product itself is gone
                 throw new ArgumentException($"Product with ID {productId} not found.");
             }
 
-            // STEP 2: Validate the Link (Is the Ingredient in this Product?)
             var productIngredient = await _context.ProductIngredients
                 .FirstOrDefaultAsync(pi => pi.ProductId == productId && pi.IngredientId == ingredientId);
 
             if (productIngredient == null)
             {
-                // Specific Error: Product exists, but this ingredient isn't in it
                 return false;
             }
 
