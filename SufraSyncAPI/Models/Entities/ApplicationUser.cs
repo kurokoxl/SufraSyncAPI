@@ -4,6 +4,8 @@ namespace SufraSyncAPI.Models.Entities
 {
     public class ApplicationUser : IdentityUser
     {
-        public ICollection<Order> orders { get; set; }
+        public ICollection<CartItem> CartItems { get; set; }
+        public ICollection<Order> ?orders { get; set; }
+
     }
 }

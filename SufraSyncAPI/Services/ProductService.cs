@@ -16,9 +16,13 @@ namespace SufraSync.Services
             _context = context;
             _mapper = mapper;
         }
-        public async Task<IEnumerable<ProductDTO>> GetAllProductsAsync(int? categoryId = null)
+        public async Task<IEnumerable<ProductDTO>> GetAllProductsAsync(int pageNumber ,int pageSize ,int? categoryId = null)
         {
-            var query = _context.Products.AsNoTracking().AsQueryable();
+            var query = _context.Products.OrderBy(p => p.ProductId)          // Always order before paging!
+                .Skip((pageNumber - 1) * pageSize)
+                .Take(pageSize)
+                .AsNoTracking()
+                .AsQueryable();
 
             if (categoryId.HasValue)
             {

@@ -14,7 +14,7 @@ namespace SufraSyncAPI.Controllers
     [ApiController]
     public class OrdersController : BaseApiController
     {
-        protected string? UserId => User.FindFirstValue(ClaimTypes.NameIdentifier);
+        //protected string? UserId => User.FindFirstValue(ClaimTypes.NameIdentifier);
         private readonly IOrderService _orderService;
         protected string? UserRole => User.FindFirstValue(ClaimTypes.Role);
         public OrdersController(IOrderService orderService)
@@ -36,7 +36,7 @@ namespace SufraSyncAPI.Controllers
         {
             try
             {
-                return Success(await _orderService.GetOrder(orderId, UserId, UserRole)); 
+                return Success(await _orderService.GetOrder(orderId, UserId!, UserRole!)); 
             }
             catch (Exception ex)
             {
@@ -93,7 +93,7 @@ namespace SufraSyncAPI.Controllers
             try
             {
                 // Pass ID and Role to the service
-                var order = await _orderService.CancelOrder(id, UserId, UserRole);
+                var order = await _orderService.CancelOrder(id, UserId!, UserRole!);
 
                 return Success(order, "Order cancelled successfully");
             }

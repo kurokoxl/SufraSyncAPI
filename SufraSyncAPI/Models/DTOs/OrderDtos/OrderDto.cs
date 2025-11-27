@@ -10,6 +10,6 @@ namespace SufraSyncAPI.Models.DTOs.OrderDtos
         public decimal TotalAmount { get; set; }
         public OrderStatus OrderStatus { get; set; }
         public string? UserId { get; set; }
-        public List<OrderProductDto> OrderProducts { get; set; }
+        public List<OrderProductDto>? OrderProducts { get; set; }
     }
 }

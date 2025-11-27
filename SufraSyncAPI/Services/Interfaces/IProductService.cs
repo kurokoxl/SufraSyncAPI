@@ -3,7 +3,7 @@
 public interface IProductService
 {
     // Reads
-    Task<IEnumerable<ProductDTO>> GetAllProductsAsync(int? categoryId = null);
+    Task<IEnumerable<ProductDTO>> GetAllProductsAsync(int pageNumber, int pageSize,int? categoryId = null);
     Task<IEnumerable<ProductDTO>> GetProductsByCategoryOld(int categoryId); 
     Task<ProductDTO?> GetProductAsync(int id);
 

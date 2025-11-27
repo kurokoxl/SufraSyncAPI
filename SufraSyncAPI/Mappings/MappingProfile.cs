@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using SufraSyncAPI.Models.DTOs;
+using SufraSyncAPI.Models.DTOs.CartDtos;
 using SufraSyncAPI.Models.DTOs.CategoryDtos;
 using SufraSyncAPI.Models.DTOs.OrderDtos;
 using SufraSyncAPI.Models.DTOs.ProductDto;
@@ -39,6 +40,11 @@ namespace SufraSyncAPI.Mappings
             CreateMap<Order, OrderDto>();
             CreateMap<OrderProduct, OrderProductDto>()
                 .ForMember(dest => dest.ProductName, opt => opt.MapFrom(src => src.Product.Name));
+
+            //Cart
+            CreateMap<CartItem, CartItemDto>()
+                .ForMember(dest => dest.ProductName, opt => opt.MapFrom(src => src.Product.Name))
+                .ForMember(dest => dest.Price, opt => opt.MapFrom(src => src.Product.Price));
         }
     }
 }

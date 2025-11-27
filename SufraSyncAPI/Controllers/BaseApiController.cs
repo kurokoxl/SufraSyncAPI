@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using SufraSyncAPI.Models.Responses;
+using System.Security.Claims;
 
 namespace SufraSync.Controllers
 {
@@ -7,6 +8,8 @@ namespace SufraSync.Controllers
     [Route("api/[controller]")]
     public class BaseApiController : ControllerBase
     {
+        protected string? UserId => User.FindFirstValue(ClaimTypes.NameIdentifier);
+
         protected IActionResult Success<T>(T data, string message = "")
         {
             return Ok(new ApiResponse<T>

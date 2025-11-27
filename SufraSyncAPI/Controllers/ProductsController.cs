@@ -1,9 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using SufraSyncAPI.Models.DTOs.ProductDto;
-using SufraSyncAPI.Models.Entities;
-using SufraSyncAPI.Models.Responses;
-using SufraSyncAPI.Models.Responses;
 
 namespace SufraSync.Controllers
 {
@@ -19,9 +16,9 @@ namespace SufraSync.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetProducts([FromQuery] int? categoryId)
+        public async Task<IActionResult> GetProducts(int pageNumber, int pageSize,[FromQuery] int? categoryId)
         {
-            var products = await _productService.GetAllProductsAsync(categoryId);
+            var products = await _productService.GetAllProductsAsync( pageNumber,  pageSize,categoryId);
             return Success(products);
         }
 
