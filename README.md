@@ -7,23 +7,6 @@ A comprehensive RESTful API for restaurant order and inventory management built 
 [![SQL Server](https://img.shields.io/badge/SQL_Server-LocalDB-CC2927?logo=microsoft-sql-server)](https://www.microsoft.com/sql-server)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 
----
-
-## 📋 Table of Contents
-
-- [Features](#-features)
-- [Tech Stack](#-tech-stack)
-- [Architecture](#-architecture)
-- [Getting Started](#-getting-started)
-- [API Documentation](#-api-documentation)
-- [Database Schema](#-database-schema)
-- [Authentication & Authorization](#-authentication--authorization)
-- [Project Structure](#-project-structure)
-- [Key Highlights](#-key-highlights)
-- [Future Enhancements](#-future-enhancements)
-
----
-
 ## ✨ Features
 
 ### 🔐 Authentication & Authorization
@@ -118,59 +101,6 @@ A comprehensive RESTful API for restaurant order and inventory management built 
 
 ---
 
-## 🚀 Getting Started
-
-### Prerequisites
-
-- [.NET 10 SDK](https://dotnet.microsoft.com/download/dotnet/10.0)
-- [SQL Server LocalDB](https://learn.microsoft.com/en-us/sql/database-engine/configure-windows/sql-server-express-localdb) or SQL Server
-- [Visual Studio 2022](https://visualstudio.microsoft.com/) or [Visual Studio Code](https://code.visualstudio.com/)
-- [Git](https://git-scm.com/)
-
-### Installation
-
-1. **Clone the repository**
-   ```bash
-   git clone https://github.com/kurokoxl/SufraSyncAPI.git
-   cd SufraSyncAPI
-   ```
-
-2. **Configure User Secrets** (Recommended for JWT Key)
-   ```bash
-   cd SufraSyncAPI
-   dotnet user-secrets init
-   dotnet user-secrets set "Jwt:Key" "YourSuperSecretKeyHere-MustBeLongEnough!"
-   dotnet user-secrets set "Jwt:Issuer" "SufraSyncAPI"
-   dotnet user-secrets set "Jwt:Audience" "SufraSyncClient"
-   ```
-
-   *Alternatively, update `appsettings.json` (not recommended for production)*
-
-3. **Update Database Connection String** (if needed)
-   
-   Edit `appsettings.json`:
-   ```json
-   "ConnectionStrings": {
-     "DefaultConnection": "Server=(localdb)\\mssqllocaldb;Database=SufraSyncAPI;Trusted_Connection=True;MultipleActiveResultSets=true"
-   }
-   ```
-
-4. **Apply Database Migrations**
-   ```bash
-   dotnet ef database update
-   ```
-
-5. **Run the Application**
-   ```bash
-   dotnet run
-   ```
-
-6. **Access the API**
-   - Swagger UI: `https://localhost:7XXX/swagger`
-   - API Base URL: `https://localhost:7XXX/api`
-
----
-
 ## 📚 API Documentation
 
 ### Authentication Endpoints
@@ -224,41 +154,6 @@ A comprehensive RESTful API for restaurant order and inventory management built 
 | PUT | `/api/ingredients/{id}` | Update ingredient stock/unit | ✅ Admin |
 
 ---
-
-## 🗄️ Database Schema
-
-### Core Entities
-
-```
-┌─────────────┐         ┌──────────────┐         ┌─────────────┐
-│   Product   │────────→│ProductIngred │←────────│  Ingredient │
-│             │         │   ient       │         │             │
-│ ProductId   │         │ ProductId    │         │IngredientId │
-│ Name        │         │IngredientId  │         │ Name        │
-│ Price       │         │QuantityReq   │         │ Stock       │
-│ CategoryId  │         │              │         │ Unit        │
-└─────────────┘         └──────────────┘         └─────────────┘
-      │                                                   
-      │                                                   
-      ↓                                                   
-┌─────────────┐         ┌──────────────┐         ┌─────────────┐
-│ OrderProduct│←────────│    Order     │────────→│Application  │
-│             │         │              │         │    User     │
-│ OrderId     │         │ OrderId      │         │             │
-│ ProductId   │         │ UserId       │         │ UserId      │
-│ Quantity    │         │ TotalAmount  │         │ Email       │
-│ Price       │         │ OrderStatus  │         │ UserName    │
-└─────────────┘         └──────────────┘         └─────────────┘
-                                │
-                                ↓
-                        ┌──────────────┐
-                        │   CartItem   │
-                        │              │
-                        │ UserId       │
-                        │ ProductId    │
-                        │ Quantity     │
-                        └──────────────┘
-```
 
 ### Key Relationships
 - **Product ↔ Ingredient**: Many-to-Many (via ProductIngredient)
@@ -388,132 +283,13 @@ Cancelled (User/Admin can cancel before delivery)
 - Controller-level and action-level authorization
 
 ---
-
-## 🔮 Future Enhancements
-
-### Performance & Scalability
-- [ ] Add pagination for large datasets
-- [ ] Implement caching (Redis) for product catalog
-- [ ] Add database indexing optimization
-- [ ] Implement API rate limiting
-
-### Testing & Quality
-- [ ] Add unit tests with xUnit
-- [ ] Create integration tests
-- [ ] Add load testing scenarios
-
-### Features
-- [ ] Email notifications for orders
-- [ ] Order delivery tracking
-- [ ] Product images upload
-- [ ] Inventory alerts for low stock
-- [ ] Reporting/analytics endpoints
-- [ ] Customer reviews and ratings
-- [ ] Discount codes and promotions
-
-### DevOps & Infrastructure
-- [ ] Implement global exception handling middleware
-- [ ] Add structured logging (Serilog)
-- [ ] Create health checks endpoint
-- [ ] Docker containerization
-- [ ] CI/CD pipeline setup (GitHub Actions)
-- [ ] API versioning
-
-### UI
-- [ ] Create admin dashboard
-- [ ] Build customer mobile app
-- [ ] Add real-time order updates (SignalR)
-
----
-
-## 📝 Sample Requests
-
-### Complete Order Flow Example
-
-```bash
-# 1. Register User
-curl -X POST https://localhost:7xxx/api/auth/register \
-  -H "Content-Type: application/json" \
-  -d '{
-    "username": "customer1",
-    "email": "customer@example.com",
-    "password": "Password123!"
-  }'
-
-# 2. Login
-curl -X POST https://localhost:7xxx/api/auth/login \
-  -H "Content-Type: application/json" \
-  -d '{
-    "email": "customer@example.com",
-    "password": "Password123!"
-  }'
-
-# 3. View Products
-curl -X GET https://localhost:7xxx/api/products
-
-# 4. Add to Cart
-curl -X POST https://localhost:7xxx/api/cart \
-  -H "Authorization: Bearer YOUR_TOKEN" \
-  -H "Content-Type: application/json" \
-  -d '{
-    "productId": 1,
-    "quantity": 2
-  }'
-
-# 5. Create Order
-curl -X POST https://localhost:7xxx/api/orders \
-  -H "Authorization: Bearer YOUR_TOKEN" \
-  -H "Content-Type: application/json" \
-  -d '{
-    "orderProducts": [
-      {"productId": 1, "quantity": 2},
-      {"productId": 2, "quantity": 1}
-    ]
-  }'
-
-# 6. View My Orders
-curl -X GET https://localhost:7xxx/api/orders/my-orders \
-  -H "Authorization: Bearer YOUR_TOKEN"
-```
-
----
-
-## 🤝 Contributing
-
-This is a portfolio project, but feedback and suggestions are welcome!
-
-1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
-
----
-
-## 📄 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
----
-
 ## 👤 Author
 
-**Your Name**
+**Youssef Abdelazim**
 
 - GitHub: [@kurokoxl](https://github.com/kurokoxl)
-- LinkedIn: [Your LinkedIn Profile](https://linkedin.com/in/yourprofile)
-- Portfolio: [Your Portfolio Website](https://yourportfolio.com)
-
+- LinkedIn: [@Youssef Abdelazim](https://www.linkedin.com/in/youssef-abdelazim-9b6a8325b/)
 ---
-
-## 🙏 Acknowledgments
-
-- Built as a learning project to demonstrate ASP.NET Core proficiency
-- Inspired by real-world restaurant POS systems
-- Special thanks to the .NET community for excellent documentation
-
----
-
 ## 📊 Project Statistics
 
 - **Lines of Code**: ~3,000+
@@ -521,22 +297,6 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - **Database Tables**: 10
 - **Design Patterns Used**: 6+
 - **Technologies**: 10+
-
----
-
-## 🐛 Known Issues
-
-- None at the moment. Please report any issues you find!
-
----
-
-## 📞 Support
-
-For questions or support, please:
-- Open an issue on GitHub
-- Contact via email: your.email@example.com
-
----
 
 ⭐ **If you found this project helpful or interesting, please consider giving it a star!**
 
