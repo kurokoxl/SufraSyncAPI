@@ -23,8 +23,6 @@ namespace SufraSync.Data
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
-
-            // Apply all entity configurations from the current assembly
             builder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
             LoadData(builder);
         }
@@ -56,7 +54,6 @@ namespace SufraSync.Data
           );
 
                         modelBuilder.Entity<Ingredient>().HasData(
-                            //add mexican restaurant ingredients here
                             new Ingredient { IngredientId = 1, Name = "Beef", Stock = 500, Unit = "kg" },
                             new Ingredient { IngredientId = 2, Name = "Chicken", Stock = 600, Unit = "kg" },
                             new Ingredient { IngredientId = 3, Name = "Fish", Stock = 300, Unit = "kg" },
@@ -67,7 +64,6 @@ namespace SufraSync.Data
 
             modelBuilder.Entity<Product>().HasData(
 
-                //Add mexican restaurant food entries here
                 new Product
                 {
                     ProductId = 1,
