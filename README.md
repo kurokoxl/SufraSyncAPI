@@ -5,8 +5,9 @@ A comprehensive RESTful API for restaurant order and inventory management built 
 [![.NET](https://img.shields.io/badge/.NET-10.0-512BD4?logo=dotnet)](https://dotnet.microsoft.com/)
 [![C#](https://img.shields.io/badge/C%23-12.0-239120?logo=c-sharp)](https://docs.microsoft.com/en-us/dotnet/csharp/)
 [![SQL Server](https://img.shields.io/badge/SQL_Server-LocalDB-CC2927?logo=microsoft-sql-server)](https://www.microsoft.com/sql-server)
-[![License](https://img.shields.io/bad![Uploading Screenshot 2025-12-01 144103.png…]()
-ge/license-MIT-blue.svg)](LICENSE)
+
+
+
 <img width="1539" height="1222" alt="Screenshot 2025-11-27 115011" src="https://github.com/user-attachments/assets/b058a19f-b219-4c25-a830-8a78a510c6bc" />
 <img width="1604" height="966" alt="Screenshot 2025-11-27 115027" src="https://github.com/user-attachments/assets/4cb22123-7839-4ac6-b219-3d13f61d2bb6" />
 
@@ -121,4 +122,5 @@ ge/license-MIT-blue.svg)](LICENSE)
 ---
 
 *Last Updated: November 2025*
+
 
