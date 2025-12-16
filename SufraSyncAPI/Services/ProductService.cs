@@ -21,8 +21,8 @@ namespace SufraSync.Services
             var query = _context.Products.OrderBy(p => p.ProductId)          // Always order before paging!
                 .Skip((pageNumber - 1) * pageSize)
                 .Take(pageSize)
-                .AsNoTracking()
-                .AsQueryable();
+                .AsNoTracking();
+             
 
             if (categoryId.HasValue)
             {

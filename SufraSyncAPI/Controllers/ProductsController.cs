@@ -120,6 +120,7 @@ namespace SufraSync.Controllers
             return Success(products);
         }
 
+        [Authorize(Roles = "Admin")]
         [HttpDelete("{productId}/ingredients/{ingredientId}")]
         public async Task<IActionResult> RemoveIngredient(int productId, int ingredientId)
         {
