@@ -47,80 +47,14 @@ A comprehensive RESTful API for restaurant order and inventory management built 
 - Dynamic price calculation
 - Order cancellation with authorization checks
 
----
 
-## 🛠️ Tech Stack
-
-**Backend Framework:**
-- ASP.NET Core 10.0
-- C# 12.0
-- Entity Framework Core 10.0
-
-**Database:**
-- SQL Server LocalDB
-- Code-First Migrations
-
-**Authentication:**
-- ASP.NET Core Identity
-- JWT Bearer Authentication
-- IdentityModel.Tokens.Jwt
-
-**Mapping & Validation:**
-- AutoMapper 12.0.1
-- Data Annotations
-
-**API Documentation:**
-- Swagger/OpenAPI
-- Scalar API Documentation
-
-**Design Patterns:**
-- Repository Pattern
-- Service Layer Pattern
-- Dependency Injection
-- DTO (Data Transfer Objects)
-
----
-
-## 🏗️ Architecture
-
-### Clean Architecture Layers
-
-```
-┌─────────────────────────────────────────┐
-│         Controllers (API Layer)          │  ← HTTP Requests/Responses
-├─────────────────────────────────────────┤
-│        Services (Business Logic)         │  ← Business Rules & Validation
-├─────────────────────────────────────────┤
-│    Data Access (Repository/DbContext)    │  ← Database Operations
-├─────────────────────────────────────────┤
-│         Database (SQL Server)            │  ← Persistent Storage
-└─────────────────────────────────────────┘
-```
-
-### Key Principles Applied
-- ✅ **Separation of Concerns** - Controllers handle HTTP, Services handle business logic
-- ✅ **SOLID Principles** - Interface-based design, dependency injection
-- ✅ **DTO Pattern** - Entities never exposed directly to clients
-- ✅ **Transaction Management** - ACID compliance for critical operations
-- ✅ **AutoMapper** - Clean object-to-object mapping
-
----
 
 - GitHub: [@kurokoxl](https://github.com/kurokoxl)
 - LinkedIn: [@Youssef Abdelazim](https://www.linkedin.com/in/youssef-abdelazim-9b6a8325b/)
 ---
-## 📊 Project Statistics
 
-- **Lines of Code**: ~3,000+
-- **API Endpoints**: 30+
-- **Database Tables**: 10
-- **Design Patterns Used**: 6+
-- **Technologies**: 10+
-
-⭐ **If you found this project helpful or interesting, please consider giving it a star!**
-
----
 
 *Last Updated: November 2025*
+
 
 
