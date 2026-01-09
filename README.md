@@ -1,6 +1,7 @@
 # 🍽️ SufraSyncAPI - Restaurant Management System
 
-A comprehensive RESTful API for restaurant order and inventory management built with ASP.NET Core 10. Features JWT authentication, role-based authorization, transactional order processing with automatic inventory tracking, and shopping cart functionality.
+ API for restaurant order and inventory management built with ASP.NET Core 10. Features JWT authentication, role-based authorization, transactional order processing with automatic inventory tracking, and shopping cart functionality.
+ The special feature of this project is that it manages the restaurant's ingredient inventory and checks the availability of ingredients in stock before accepting an order.
 
 [![.NET](https://img.shields.io/badge/.NET-10.0-512BD4?logo=dotnet)](https://dotnet.microsoft.com/)
 [![C#](https://img.shields.io/badge/C%23-12.0-239120?logo=c-sharp)](https://docs.microsoft.com/en-us/dotnet/csharp/)
@@ -55,6 +56,7 @@ A comprehensive RESTful API for restaurant order and inventory management built 
 
 
 *Last Updated: November 2025*
+
 
 
 
